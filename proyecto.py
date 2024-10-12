@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 from ttkthemes import ThemedTk
-from tkinter import PhotoImage  # Para manejar imágenes en tkinter
-import random  # Para generar frases aleatorias
+from tkinter import PhotoImage  
+import random  
 
-# ---------------- Funciones para la Pestaña 1 (Opciones de Áreas) ---------------- #
+# calculo de areas tab1
 def calcular_area():
     opcion = AreaOption.get()
     
@@ -40,7 +40,7 @@ def calcular_area():
     else:
         LabelOP2.config(text="Opción no válida.")
 
-# ---------------- Funciones para la Pestaña 2 (Calculadora Científica sin math) ---------------- #
+# calculadora basica tab2
 def click_boton(valor):
     actual = entrada_calculadora.get()
     entrada_calculadora.delete(0, tk.END)
@@ -70,16 +70,15 @@ def mostrar_frase_aleatoria():
     frase_aleatoria = random.choice(frases)
     etiqueta_frase.config(text=frase_aleatoria)
 
-# ---------------- Configuración de la ventana principal con ttk ---------------- #
+# configuracion de la ventana
 ventanita = ThemedTk(theme="black")
 ventanita.title("Calculadora Científica")
 ventanita.geometry("500x500")
 
-# Crear un widget Notebook para las pestañas
 notebook = ttk.Notebook(ventanita)
 notebook.pack(pady=10, expand=True, fill='both')
 
-# Crear los frames para las 4 pestañas
+# creacion de tabs o pestañas
 tab1 = ttk.Frame(notebook)
 tab2 = ttk.Frame(notebook)
 tab3 = ttk.Frame(notebook)
@@ -87,10 +86,10 @@ tab4 = ttk.Frame(notebook)
 
 notebook.add(tab1, text="Opciones de Áreas")
 notebook.add(tab2, text="Calculadora")
-notebook.add(tab3, text="slider de dezplasamiento")
+notebook.add(tab3, text="Slider de dezplasamiento")
 notebook.add(tab4, text="Equipo")
 
-# ---------------- Configuración de la pestaña 1 (Opciones de Áreas) ---------------- #
+# configuracion de tab1
 AreaOption = tk.IntVar()
 
 ttk.Radiobutton(tab1, text="Calcular área de Cuadrado", variable=AreaOption, value=1).pack(anchor='w')
@@ -126,7 +125,7 @@ ttk.Button(tab1, text="Calcular Área", command=calcular_area).pack(pady=10)
 LabelOP2 = ttk.Label(tab1, text="Resultado: ")
 LabelOP2.pack(pady=5)
 
-# ---------------- Configuración de la pestaña 2 (Calculadora Científica) ---------------- #
+#configuracion de tab 2
 entrada_calculadora = ttk.Entry(tab2, width=35)
 entrada_calculadora.pack(pady=10, fill='x')
 
@@ -148,39 +147,34 @@ frame_botones_adicionales = ttk.Frame(tab2)
 frame_botones_adicionales.pack(fill='x')
 ttk.Button(frame_botones_adicionales, text="Limpiar", command=limpiar).pack(side='left', expand=True, fill='both', padx=5, pady=5)
 
-# ---------------- Configuración de la pestaña 3 (Convertidor de Unidades) ---------------- #
-# Crear un frame para el texto con scrollbar
+# configuracion de tab 3
+
 frame_convertidor = ttk.Frame(tab3)
 frame_convertidor.pack(pady=10, fill='both', expand=True)
 
-# Crear el widget de texto
 texto_convertidor = tk.Text(frame_convertidor, wrap='word', height=15)
 texto_convertidor.pack(side='left', fill='both', expand=True)
 
-# Crear la scrollbar
 scrollbar = ttk.Scrollbar(frame_convertidor, orient='vertical', command=texto_convertidor.yview)
 scrollbar.pack(side='right', fill='y')
 
-# Configurar la scrollbar con el widget de texto
 texto_convertidor.config(yscrollcommand=scrollbar.set)
 
-# Rellenar el widget de texto con un ejemplo
 texto_convertidor.insert(tk.END, "")
 
-# Slider pequeño (horizontal)
 slider_pequeno = ttk.Scale(tab3, from_=0, to=100, orient='horizontal')
 slider_pequeno.pack(pady=10, fill='x')
 
-# ---------------- Configuración de la pestaña 4 (Datos del equipo) ---------------- #
-# Integrante 1
+#configuracion de tab 4
+
 frame_hector = ttk.Frame(tab4)
 frame_hector.pack(side='top', anchor='w')
 
-# Imagen de HECTOR GABRIEL
-imagen_hector = PhotoImage(file="C:/perifericos/E.png")  # Coloca la ruta de la imagen
+
+imagen_hector = PhotoImage(file="C:/perifericos/E.png")  
 ttk.Label(frame_hector, image=imagen_hector).pack(side='left', padx=5)
 
-# Información de HECTOR GABRIEL (Frases aleatorias)
+
 frame_info_hector = ttk.Frame(frame_hector)
 frame_info_hector.pack(side='left', padx=5)
 
@@ -188,23 +182,22 @@ ttk.Label(frame_info_hector, text="Hector Gabriel Perez Atonal").pack(pady=2)
 ttk.Label(frame_info_hector, text="Matrícula: 221403131").pack(pady=2)
 ttk.Label(frame_info_hector, text="Número de lista: 15").pack(pady=2)
 
-# Etiqueta para mostrar frase aleatoria
+
 etiqueta_frase = ttk.Label(frame_info_hector, text="", wraplength=150)
 etiqueta_frase.pack(pady=2)
 
-# Botón para mostrar frase aleatoria
 boton_frase = ttk.Button(frame_info_hector, text="Mostrar Frase", command=mostrar_frase_aleatoria)
 boton_frase.pack(pady=5)
 
-# Integrante 2
+
 frame_nayeli = ttk.Frame(tab4)
 frame_nayeli.pack(side='top', anchor='w')
 
-# Imagen de NAYELI TIZO
-imagen_nayeli = PhotoImage(file="C:/perifericos/D.png")  # Coloca la ruta de la imagen
+
+imagen_nayeli = PhotoImage(file="C:/perifericos/D.png")  
 ttk.Label(frame_nayeli, image=imagen_nayeli).pack(side='left', padx=5)
 
-# Información de NAYELI TIZO
+
 frame_info_nayeli = ttk.Frame(frame_nayeli)
 frame_info_nayeli.pack(side='left', padx=5)
 
@@ -216,5 +209,5 @@ ttk.Label(frame_info_nayeli, text="Comentarios sobre Nayeli:").pack(pady=2)
 texto_nayeli = tk.Text(frame_info_nayeli, height=4, width=30)
 texto_nayeli.pack(pady=2)
 
-# Ejecutar la ventana principal
+
 ventanita.mainloop()
